@@ -1,5 +1,4 @@
 def solution(strArr):
-    answer = 0
     text_dict = {}
     for text in strArr:
         length = len(text)
