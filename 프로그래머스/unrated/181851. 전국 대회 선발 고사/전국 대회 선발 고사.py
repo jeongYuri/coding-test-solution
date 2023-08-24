@@ -1,9 +1,5 @@
 def solution(rank, attendance):
     answer = []
-    student = sorted([(r,i) for i,r in enumerate(rank)])   
-    for r,i in student:
-        if attendance[i]:
-            answer.append(i)
-            if len(answer)==3:
-                break
-    return answer[0]*10000+answer[1]*100+answer[2]
+    student = sorted([(r,i) for i,r in enumerate(rank) if attendance[i]])   
+    
+    return student[0][1]*10000+student[1][1]*100+student[2][1]
