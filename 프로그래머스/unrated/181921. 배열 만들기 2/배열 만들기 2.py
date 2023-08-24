@@ -1,8 +1,8 @@
 def solution(l, r):
     answer = []
-    for i in range(l,r+1):
-        if all(num in ['0','5'] for num in str(i)):
-            answer.append(i)
+    for num in range(l,r+1):
+        if not set(str(num)) - set(['0', '5']):
+            answer.append(num)
     if len(answer)==0:
         return [-1]
     return answer
