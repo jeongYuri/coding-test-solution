@@ -4,9 +4,7 @@ def solution(s):
         rotation = s[start:]+s[:start]
         while True:
             length= len(rotation)
-            rotation = rotation.replace("[]","")
-            rotation = rotation.replace("()","")
-            rotation = rotation.replace("{}","")
+            rotation = rotation.replace("[]","").replace("()","").replace("{}","")
             if len(rotation)==0:
                 count +=1
                 break
