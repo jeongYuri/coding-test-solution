@@ -4,10 +4,10 @@ def solution(s):
     for i, v in enumerate(s):
         s[i] = v.split()
     s.sort(key = lambda x:len(x))
-    for tu in s:
-        dif = set(tu) - set(answer)
-        answer.append(list(dif)[0])
-    answer = [int(i) for i in answer] 
+    for i in s:
+        for j in range(len(i)):
+            if int(i[j]) not in answer:
+                answer.append(int(i[j]))
     return answer
        
 
