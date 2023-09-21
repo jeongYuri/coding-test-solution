@@ -1,13 +1,12 @@
 def solution(priorities, location):
     answer = 0
-    queue = [(p, idx) for idx, p in enumerate(priorities)]
-    while queue:
+    queue = [(idx, p) for idx, p in enumerate(priorities)]
+    while True:
         front = queue.pop(0)
-        priority, idx = front
-        if any(priority<p for p, _ in queue):
+        if any(front[1]<q[1] for q in queue):
             queue.append(front)
         else:
             answer +=1
-            if idx == location:
+            if front[0]==location:
                 return answer
     return answer
