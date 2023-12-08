@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 def custom_sort(member):
     return (member[0], member[2])
 
