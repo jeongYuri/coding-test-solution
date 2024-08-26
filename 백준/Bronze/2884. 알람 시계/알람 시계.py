@@ -1,11 +1,1 @@
-import sys
-input = sys.stdin.readline
-
-h, m = map(int, input().split())
-if m < 45:
-    if h == 0:
-        print(23, m + 15)
-    else:
-        print(h - 1, m + 15)
-else:
-    print(h, m - 45)
+import sys; h, m = map(int, sys.stdin.readline().split()); print((h-1 if m<45 else h) if h != 0 or m >= 45 else 23, m+15 if m<45 else m-45)
