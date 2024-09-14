@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); //고정비용
+        int count = 1; //지나는 방 개수
+        int range = 1; //현재 층 최대 방번호
+        while(n>range){
+            range += 6*count;
+            count++;
+        }
+        System.out.println(count);
+        sc.close();
+    }
+}
