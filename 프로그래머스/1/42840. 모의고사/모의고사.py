@@ -1,17 +1,18 @@
 def solution(answers):
     win = []
-    st1 = [1,2,3,4,5]
-    st2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    st3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
-    count = [0,0,0]
-    for i in range(len(answers)):
-        if answers[i]==st1[(i%5)]:
-            count[0]+=1
-        if answers[i]==st2[(i%8)]:
-            count[1]+=1
-        if answers[i]==st3[(i%10)]:
-            count[2]+=1
-    for i in range(3):
-        if count[i]==max(count):
-            win.append(i+1)
-    return win
+    patterns = [
+        [1, 2, 3, 4, 5],          
+        [2, 1, 2, 3, 2, 4, 2, 5],
+        [3, 3, 1, 1, 2, 2, 4, 4, 5, 5] 
+    ]
+    scores = [0]*len(patterns)
+    for i, answer in enumerate(answers):
+        for j, pattern in enumerate(patterns):
+            if answer == pattern[i%len(pattern)]:
+                scores[j]+=1
+    max_score = max(scores)
+    result = [] 
+    for i, score in enumerate(scores): 
+        if score == max_score: 
+            result.append(i + 1)    
+    return result
