@@ -1,15 +1,14 @@
-
 def solution(participant, completion):
-    answer = ''
+    ans = ''
     participant.sort()
     completion.sort()
-    
+    hash = {}
     for i in range(len(completion)):
-        if participant[i]!= completion[i]:
-            answer = participant[i]           
+        if participant[i] != completion[i]:
+            ans = participant[i]
             break
         else:
-            answer = participant[-1]
-    if answer == '':
-        answer = participant[-1]
-    return answer
+            ans = participant[-1]
+    if ans == '':
+        ans = participant[-1]
+    return ans
