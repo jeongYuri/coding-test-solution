@@ -1,8 +1,5 @@
 def solution(nums):
     answer = 0
-    hash = {}
-    for i in nums:
-        hash[i] = 1
-    if len(nums)//2<=len(hash):
-        return len(nums)//2
-    return len(hash)
+    poketmon = set(nums) #중복 제거해서 간략하게 하기 위해
+    answer = min(len(poketmon),len(nums)//2)
+    return answer
