@@ -1,13 +1,13 @@
 def solution(n, computers):
     answer = 0
-    def DFS(i):
-        visited[i]=1
-        for a in range(n):
-            if computers[i][a] and not visited[a]:
-                DFS(a)
-    visited = [0 for i in range(len(computers))]
+    visited = [0 for _ in range(len(computers))]
+    def dfs(i):
+        visited[i] = 1
+        for j in range(n):
+            if computers[i][j] and not visited[j]:
+                dfs(j)
     for i in range(n):
         if not visited[i]:
-            DFS(i)
-            answer +=1
+            dfs(i)
+            answer+=1
     return answer
