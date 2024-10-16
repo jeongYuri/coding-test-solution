@@ -1,5 +1,5 @@
 def solution(numbers):
     answer = ''
-    bigsu = [str(p) for p in numbers]
-    bigsu.sort(key = lambda p:p*3,reverse = True)
-    return str(int(''.join(bigsu)))
+    big_num = [str(n) for n in numbers] 
+    big_num.sort(key=lambda n:n*3,reverse = True)
+    return  str(int(''.join(big_num)))
