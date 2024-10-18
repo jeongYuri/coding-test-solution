@@ -26,9 +26,7 @@ def solution(m, musicinfos):
 
     if not answer:
         return "(None)"
-    elif len(answer)==1:
-        return answer[0][2]
-    else:
-        answer.sort(key=lambda x: (-x[0], x[1]))
+ 
+    answer.sort(key=lambda x: (-x[0], x[1]))
     
-        return answer[0][2]
+    return answer[0][2]
