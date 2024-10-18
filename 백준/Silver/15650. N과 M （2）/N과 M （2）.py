@@ -1,13 +1,14 @@
-def dfs(v):
-    if len(s)==m:
-        print(' '.join(map(str,s)))
-        return
-    for i in range(v,n+1):
-        if i not in s:
-            s.append(i)
-            dfs(i+1)
-            s.pop()
-
+import sys
 n,m = map(int,input().split())
-s = []
-dfs(1)
+ans = []
+def backtrack(depth):
+    if len(ans)==m:
+        print(' '.join(map(str,ans)))
+        return
+    for i in range(depth, n + 1): 
+        ans.append(i)
+        backtrack(i + 1)  
+        ans.pop()
+
+
+backtrack(1)
