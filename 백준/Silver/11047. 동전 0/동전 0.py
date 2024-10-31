@@ -1,16 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-n, k = map(int,input().split())
-coin = []
-count = 0
+n,k = map(int,input().split())
+cost = []
+cnt = 0
 for _ in range(n):
-    coin.append(int(input()))
-coin.sort(reverse = True)
-
+    cost.append(int(input()))
+cost.reverse()
 while k>0:
-    for i in coin:
+    for i in cost:
         if i<=k:
-            count +=k//i
-            k%=i
-print(count)
+         cnt += k//i
+         k%=i
+print(cnt)
