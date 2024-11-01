@@ -1,9 +1,9 @@
 import sys
 input = sys.stdin.readline
 
-tc = int(input())
-for _ in range(tc):
-    t, r = input().split()
-    t = int(t)
-    ans = ''.join(c * t for c in r)
-    print(ans)
+t = int(input())
+for _ in range(t):
+    r,s = input().split()
+    r = int(r)
+    word = ''.join(w*r for w in s)
+    print(word)
