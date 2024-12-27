@@ -1,10 +1,8 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-numbers = []
-for _ in range(n):
-    numbers.append(int(input()))
-numbers = sorted(numbers, reverse = True)
-for i in numbers:
-    print(i)
+n = int(input().strip())  #
+numbers = [int(input().strip()) for _ in range(n)]
+numbers.sort(reverse=True)
+
+print("\n".join(map(str, numbers)))
