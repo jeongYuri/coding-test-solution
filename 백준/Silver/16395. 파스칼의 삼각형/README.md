@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 32412 KB, 시간: 36 ms
+메모리: 14300 KB, 시간: 104 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2025년 1월 15일 22:55:43
+2025년 1월 15일 23:06:01
 
 ### 문제 설명
 
@@ -34,7 +34,7 @@
 
 <p>같은 방식으로 n=11일 때, 다음과 같은 파스칼의 삼각형을 만들 수 있다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 588px; height: 251px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Pascal_triangle.svg/588px-Pascal_triangle.svg.png" style="width: 588px; height: 251px;"></p>
 
 <p>정수 n과 k가 주어졌을 때 파스칼의 삼각형에 있는 n번째 행에서 k번째 수를 출력하는 프로그램을 작성하시오.  이때, 이 수는 이항계수 C(n-1,k-1)임에 주의하시오.</p>
 
