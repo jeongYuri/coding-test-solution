@@ -8,19 +8,24 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         String[] inputs = br.readLine().split(" ");
         int[] arr = new int[n];
+
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(inputs[i]); 
+            arr[i] = Integer.parseInt(inputs[i]);  
         }
-        int[] cnt = new int[2];
-        int[] cntLeft = new int[2];
 
-        for(int a: arr){
-            int idx = a%2;
-            cnt[idx]++;
-            cntLeft[idx] += cnt[1-idx];
-        }
-        System.out.println(Math.min(cntLeft[0], cntLeft[1]));
+        long Lcnt = 0;
+        long Rcnt = 0;
+        long sum = 0;
+        int idx = 0;
 
+        for(int i = 0;i<n;i++){
+            int num = arr[i];
+            if(num %2==0){
+                sum += idx++;
+                Lcnt +=i;
+                Rcnt += n-1-i;
+            }
         }
+        System.out.println(Math.min(Lcnt, Rcnt) - sum);
     }
-
+}
