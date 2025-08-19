@@ -1,0 +1,19 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input().rstrip())
+k = int(input().rstrip())
+
+left, right = 1, n*n
+ans = 0
+while left <= right:
+    mid = (left+right)//2
+    cnt = 0
+    for i in range(1,n+1):
+        cnt += min(n,mid//i)
+    if cnt>=k:
+        ans = mid
+        right = mid-1
+    else:
+        left = mid +1
+print(ans)
