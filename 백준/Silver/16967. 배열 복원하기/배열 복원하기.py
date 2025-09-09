@@ -1,9 +1,10 @@
 import sys
 input = sys.stdin.readline
-H, W, X, Y = map(int, input().strip().split())
-B = [list(map(int, input().strip().split())) for _ in range(H+X)]
-for i in range(X,H):
-    for j in range(Y,W):
-        B[i][j] = B[i][j] - B[i-X][j-Y]
-for result in B[:H] :
-    print(*result[:W])
+h,w,x,y = map(int,input().split())
+arr = [list(map(int,input().split()))for _ in range(h+x)]
+
+for i in range(x,h):
+    for j in range(y,w):
+        arr[i][j] = arr[i][j]-arr[i-x][j-y]
+for res in arr[:h]:
+    print(*res[:w])
