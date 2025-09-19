@@ -1,11 +1,11 @@
-import sys
-input = sys.stdin.readline
-from collections import Counter
+s = list(input())
+cnt_0, cnt_1 = s.count('0') // 2, s.count('1') // 2
 
-s = input().strip()
-c = Counter(s)
-z = c['0']//2
-o = c['1']//2
-ans = '0'*z + '1'*o
-ans = ''.join(sorted(ans))
-print(ans)
+for _ in range(cnt_1):
+    s.pop(s.index('1'))
+
+for _ in range(cnt_0):
+    s.pop(-s[::-1].index('0')-1)
+
+
+print(''.join(s))
