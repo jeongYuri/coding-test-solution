@@ -3,9 +3,9 @@ sys.setrecursionlimit(10000)
 input = sys.stdin.readline
 
 n,m = map(int,input().split())
-arrive = False
 graph = [[] for _ in range(n+1)]
 visited = [False]*(n+1)
+arrive = False
 
 def dfs(now, depth):
     global arrive
@@ -17,17 +17,14 @@ def dfs(now, depth):
         if not visited[i]:
             dfs(i,depth+1)
     visited[now] = False
-
 for _ in range(m):
-    x,y = map(int,input().split())
-    graph[x].append(y)
-    graph[y].append(x)
-
+    s,e = map(int,input().split())
+    graph[s].append(e)
+    graph[e].append(s)
 for i in range(n):
     dfs(i,1)
     if arrive:
         break
-
 if arrive:
     print(1)
 else:
