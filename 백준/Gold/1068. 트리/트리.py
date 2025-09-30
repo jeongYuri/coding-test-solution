@@ -1,32 +1,37 @@
 import sys
 input = sys.stdin.readline
-
-def dfs(node):
-    if not graph[node]:
-        return 1
-    leaf = 0
-    for child in graph[node]:
-        leaf+= dfs(child)
-    return leaf
+sys.setrecursionlimit(10**6)
 
 n = int(input())
-parents = list(map(int, input().split()))
-delete= int(input())
-graph = [[] for _ in range(n)]
-root = 0
+visited = [False] * n
+tree = [[] for _ in range(n)]
+ans = 0
+p = list(map(int, input().split()))
 
 for i in range(n):
-    if parents[i] == -1:  # 부모노드
-        root = i
+    if p[i] != -1:
+        tree[i].append(p[i])
+        tree[p[i]].append(i)
     else:
-        graph[parents[i]].append(i)
+        root = i
+
+delete = int(input())
+
+def dfs(current_node):
+    global ans
+    is_leaf = True
+    for neighbor in tree[current_node]:
+        if not visited[neighbor] and neighbor != delete:
+            visited[neighbor] = True
+            is_leaf = False
+            dfs(neighbor)
+
+    if is_leaf:
+        ans += 1
 
 if delete == root:
     print(0)
 else:
-    for children in graph:
-        if delete in children:
-            children.remove(delete)
-            break
-    result = dfs(root)
-    print(result)
+    visited[root] = True   
+    dfs(root)
+    print(ans)
