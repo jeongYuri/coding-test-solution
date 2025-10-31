@@ -1,8 +1,7 @@
 def solution(sizes):
     answer = 0
-    w = []
-    h = []
     for i in range(len(sizes)):
-        w.append(max(sizes[i]))
-        h.append(min(sizes[i]))
-    return max(w)*max(h)
+        sizes[i].sort()
+    col = max(w for w,h in sizes)
+    row = max(h for w,h in sizes)
+    return col*row
