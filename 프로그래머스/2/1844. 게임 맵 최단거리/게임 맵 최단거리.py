@@ -1,21 +1,23 @@
 from collections import deque
 def solution(maps):
-    ans = 0
-    q = deque()
-    dx = [-1,1,0,0]
-    dy = [0,0,-1,1]
-    q.append((0,0)) #0부터 시작이니까..
+    n,m = len(maps),len(maps[0])
+    visited = [[0]*m for _ in range(n)]
+    q = deque([(0,0)])
+    visited[0][0] = 1
+    
+    dx = [1,-1,0,0]
+    dy = [0,0,1,-1]
+    
     while q:
         x,y = q.popleft()
+        
+        if x==n-1 and y==m-1:
+            return visited[x][y]
         for i in range(4):
             nx = x+dx[i]
             ny = y+dy[i]
-            n = len(maps)
-            m = len(maps[0])
-            if(0<=nx<n and 0<=ny<m and maps[nx][ny]==1):
-                maps[nx][ny] = maps[x][y]+1
+            if 0<=nx<n and 0<=ny<m and maps[nx][ny]==1 and visited[nx][ny] ==0:
+                visited[nx][ny] = visited[x][y]+1
                 q.append((nx,ny))
-    ans = maps[n-1][m-1]
-    if ans ==1:
-        return -1
-    return ans
+                
+    return -1
