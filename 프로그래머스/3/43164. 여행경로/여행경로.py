@@ -1,22 +1,17 @@
-from collections import defaultdict
-
 def solution(tickets):
+    tickets.sort()
+    visited =[False]*len(tickets)
     answer = []
-    arr = defaultdict(list)
-    for start, end in tickets:
-        arr[start].append(end)
     
-    for i in arr.keys():
-        arr[i].sort()
-    
-    st = ['ICN'] 
-    
-    while st:
-        q = st[-1]
-        
-        if arr[q]:  
-            st.append(arr[q].pop(0))
-        else:
-            answer.append(st.pop())
-    
-    return answer[::-1]
+    def dfs(current, path):
+        if len(path)==len(tickets)+1:
+            answer.append(path)
+            return
+        for i , (start, end) in enumerate(tickets):
+            if not visited[i] and start==current:
+                visited[i] = True
+                dfs(end, path+[end])
+                visited[i] = False
+    dfs("ICN", ["ICN"])
+    return answer[0]
+ 
