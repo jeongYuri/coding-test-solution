@@ -1,22 +1,16 @@
 from collections import deque
 def solution(begin, target, words):
-    answer = 0
     if target not in words:
         return 0
-    return bfs(begin, target, words)
-    
-def bfs(begin, target, words):
-    q = deque()
-    q.append([begin, 0])
+    q = deque([(begin,0)])
+    visited = set()
     while q:
-        now,step = q.popleft()
-        if now==target:
+        word, step = q.popleft()
+        if word==target:
             return step
-        for word in words:
-            cnt = 0
-            for i in range(len(now)):
-                if now[i]!=word[i]:
-                    cnt+=1
-            if cnt ==1:
-                q.append([word,step+1])
-                    
+        for w in words:
+            if w not in visited and sum(a!=b for a,b in zip(word, w))==1:
+                visited.add(w)
+                q.append((w,step+1))
+    return 0
+    
