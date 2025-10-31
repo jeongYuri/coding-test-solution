@@ -1,7 +1,10 @@
-from collections import Counter
 def solution(clothes):
-    ans = 1
-    closet = Counter([kind for name,kind in clothes])
-    for count in closet.values():
-        ans*= (count+1)
-    return ans-1
+    closet = {}
+    for name, kind in clothes:
+        closet[kind] = closet.get(kind, 0) + 1
+
+    answer = 1
+    for kind in closet:
+        answer *= (closet[kind] + 1)
+
+    return answer - 1
