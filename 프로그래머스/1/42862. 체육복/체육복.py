@@ -1,10 +1,11 @@
 def solution(n, lost, reserve):
-    set_lost = set(lost)-set(reserve)
-    set_reserve = set(reserve) - set(lost)
-    for i in set_reserve:
-        if i-1 in set_lost:
-            set_lost.remove(i-1)
-        elif i+1 in set_lost:
-            set_lost.remove(i+1)
+    reserve_s = set(reserve)-set(lost)
+    lost_s = set(lost)-set(reserve)
+    
+    for r in sorted(reserve_s):
+        if r-1 in lost_s:
+            lost_s.remove(r-1)
+        elif r+1 in lost_s:
+            lost_s.remove(r+1)
+    return n-len(lost_s)
             
-    return n-len(set_lost)
