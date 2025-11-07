@@ -1,14 +1,12 @@
-from string import ascii_lowercase
-from string import ascii_uppercase
+
 
 def solution(s, n):
     answer = ''
-    lowercase= list(ascii_lowercase)*2
-    uppercase= list(ascii_uppercase)*2
-    for i in s:
-        if i in lowercase:
-            answer+= lowercase[lowercase.index(i)+n]
-        elif i in uppercase:
-            answer +=uppercase[uppercase.index(i)+n]
-        else:answer +=" "
+    for ch in s:
+        if ch.islower():
+            answer += chr((ord(ch) - ord('a') + n) % 26 + ord('a'))
+        elif ch.isupper(): 
+            answer += chr((ord(ch) - ord('A') + n) % 26 + ord('A'))
+        else: 
+            answer += ch
     return answer
