@@ -1,17 +1,16 @@
 def solution(keymap, targets):
     answer = []
-    for word in targets:
-        count = 0
-        for char in word:
-            cnt = 101
-            flag = False
-            for key in keymap:
-                if char in key:
-                    cnt = min(key.index(char)+1,cnt)
-                    flag = True
-            if not flag:
-                count =-1
+    d ={}
+    for key in keymap:
+        for i,ch in enumerate(key):
+            if ch not in d or d[ch]>i+1:
+                d[ch]  = i+1
+    for target in targets:
+        total = 0
+        for ch in target:
+            if ch not in d:
+                total =-1
                 break
-            count += cnt
-        answer.append(count)
+            total+= d[ch]
+        answer.append(total)
     return answer
