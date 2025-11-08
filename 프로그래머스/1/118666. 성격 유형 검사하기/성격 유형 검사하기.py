@@ -1,15 +1,18 @@
 def solution(survey, choices):
+    score = { 'R':0, 'T':0, 'C':0, 'F':0, 'J':0, 'M':0, 'A':0, 'N':0 }
+
+    for s, c in zip(survey, choices):
+        a, b = s[0], s[1]
+        if c < 4:  
+            score[a] += 4 - c
+        elif c > 4:  
+            score[b] += c - 4
+
     answer = ''
-    dic = {'R':0,'T':0,'C':0,'F':0,'J':0,'M':0,'A':0,'N':0}
-    for s,c in zip(survey, choices):
-        if c>4:
-            dic[s[1]]+=c-4
+    for left, right in [('R','T'), ('C','F'), ('J','M'), ('A','N')]:
+        if score[left] >= score[right]:
+            answer += left
         else:
-            dic[s[0]]+=4-c
-        arr  = list(dic.items())
-    for i in range(0,8,2):
-        if arr[i][1]<arr[i+1][1]:
-            answer += arr[i+1][0]
-        else:
-            answer += arr[i][0]
+            answer += right
+
     return answer
