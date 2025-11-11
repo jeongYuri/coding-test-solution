@@ -1,11 +1,14 @@
 def solution(prices):
-    answer = []
-    for i in range(len(prices) - 1):
-        duration = 0
-        for j in range(i + 1, len(prices)):
-            duration += 1
-            if prices[i] > prices[j]:
-                break
-        answer.append(duration)
-    answer.append(0)  
+    answer = [0]*len(prices)
+    st = []
+    for i in range(len(prices)):
+        while st and prices[st[-1]]>prices[i]:
+            idx = st.pop()
+            answer[idx] = i-idx
+        st.append(i)
+    while st:
+        idx = st.pop()
+        answer[idx] = len(prices)-1-idx
+        
+    
     return answer
