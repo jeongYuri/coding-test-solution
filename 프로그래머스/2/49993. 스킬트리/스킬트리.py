@@ -1,12 +1,15 @@
 def solution(skill, skill_trees):
-    answer = 0
-    for skills in skill_trees:
-        skill_list = list(skill)
-        for s in skills:
-            if s in skill_list:
-                if s != skill_list.pop(0):
+    cnt = 0
+    for tree in skill_trees:
+        st = list(reversed(skill))
+        valid = True
+        
+        for s in tree:
+            if s in skill:
+                if s==st[-1]:
+                    st.pop()
+                else:
+                    valid = False
                     break
-        else:
-            answer += 1
-
-    return answer
+        if valid: cnt+=1
+    return cnt
