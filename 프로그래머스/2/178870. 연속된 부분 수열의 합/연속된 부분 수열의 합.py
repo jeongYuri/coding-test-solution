@@ -1,19 +1,20 @@
 def solution(sequence, k):
-    start, end = 0, 0
-    current_sum = 0
-    min_length = float('inf')
-    answer = []
-
-    while end < len(sequence):
-        current_sum += sequence[end]
-
-        while current_sum >= k:
-            if current_sum == k and (end - start + 1) < min_length:
-                min_length = end - start + 1
-                answer = [start, end]
-            current_sum -= sequence[start]
-            start += 1
-
-        end += 1
-
-    return answer
+    n = len(sequence)
+    start, end = 0,0
+    total = sequence[0]
+    res = [0,n-1]
+    while start<n and end<n:
+        if total==k:
+            if (end-start)<(res[1]-res[0]):
+                res=[start, end]
+            start +=1
+            if start<n:
+                total -= sequence[start-1]
+        elif total<k:
+            end+=1
+            if end<n:
+                total += sequence[end]
+        else:
+            total -= sequence[start]
+            start+=1
+    return res
