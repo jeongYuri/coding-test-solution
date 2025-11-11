@@ -1,8 +1,10 @@
 def solution(numbers):
-    stack = []
-    answer = [-1]*len(numbers)
+    ans = [-1]*len(numbers)
+    st = []
+    
     for i in range(len(numbers)):
-        while stack and numbers[stack[-1]]<numbers[i]:
-            answer[stack.pop()] = numbers[i]
-        stack.append(i)
-    return answer
+        while st and numbers[st[-1]]<numbers[i]:
+            idx = st.pop()
+            ans[idx]= numbers[i]
+        st.append(i)
+    return ans
