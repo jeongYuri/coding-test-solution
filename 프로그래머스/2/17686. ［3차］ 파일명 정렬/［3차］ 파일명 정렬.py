@@ -1,8 +1,17 @@
-import re
-
 def solution(files):
-    def parse_file(file):
-        match = re.match(r"([^\d]+)(\d+)(.*)", file)
-        return match.groups()
-    sorted_files = sorted(files, key=lambda file: (parse_file(file)[0].lower(), int(parse_file(file)[1])))
-    return sorted_files
+    answer = []
+    for f in files:
+        head, number, tail = '','',''
+        check = False
+        for i in range(len(f)):
+            if f[i].isdigit():
+                number+=f[i]
+                check = True
+            elif not check:
+                head+=f[i]
+            else:
+                tail=f[i:]
+                break
+        answer.append((head, number, tail))
+    answer.sort(key=lambda x: (x[0].upper(), int(x[1]))) 
+    return [''.join(t)for t in answer]
