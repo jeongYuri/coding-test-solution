@@ -10,5 +10,4 @@ def solution(n, computers):
         if not visited[i]:
             dfs(i)
             cnt+=1
-                
     return cnt
