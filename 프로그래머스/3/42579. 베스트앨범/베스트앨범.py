@@ -1,15 +1,22 @@
-from collections import defaultdict
 def solution(genres, plays):
-    ans = []
-    cnt = defaultdict(int)
-    music = defaultdict(list)
-    for i ,(genre,play) in enumerate(zip(genres, plays)):
-        cnt[genre] += play
-        music[genre].append((i,play))
-    sorted_g = sorted(cnt.keys(),key = lambda x:cnt[x],reverse = True)
-    for sg in sorted_g:
-        song = music[sg]
-        song = sorted(song,key = lambda x:(-x[1],x[0]))
-        for i in range(min(2,len(song))):
-            ans.append(song[i][0])
-    return ans
+    genre_to_songs = {}     
+    genre_total_plays = {}  
+    answer = []             
+
+    for idx, (genre, play) in enumerate(zip(genres, plays)):
+        if genre not in genre_to_songs:
+            genre_to_songs[genre] = [(idx, play)]
+        else:
+            genre_to_songs[genre].append((idx, play))
+
+        if genre not in genre_total_plays:
+            genre_total_plays[genre] = play
+        else:
+            genre_total_plays[genre] += play
+
+    for genre, _ in sorted(genre_total_plays.items(), key=lambda x: x[1], reverse=True):
+        top_songs = sorted(genre_to_songs[genre], key=lambda x: (-x[1], x[0]))[:2]
+        for song_index, _ in top_songs:
+            answer.append(song_index)
+
+    return answer
