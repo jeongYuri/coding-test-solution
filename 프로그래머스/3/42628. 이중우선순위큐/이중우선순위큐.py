@@ -1,23 +1,15 @@
-import heapq
-
 def solution(operations):
-    heap = []
-
+    q = []
     for op in operations:
-        command, value = op.split()
-
-        if command == "I":
-            heapq.heappush(heap, int(value))
-        elif command == "D" and value == "1":
-            if heap:
-                heap.remove(max(heap))
-                heapq.heapify(heap)
-        elif command == "D" and value == "-1":
-            if heap:
-                heapq.heappop(heap)
-
-    if not heap:
-        return [0, 0]
-    else:
-        return [max(heap), min(heap)]
-
+        c, n = op.split()
+        n = int(n)
+        if c == 'I':
+            q.append(n)
+        elif c == 'D':
+            if not q:
+                continue
+            if n == 1:
+                q.remove(max(q))
+            elif n == -1:
+                q.remove(min(q))
+    return [max(q), min(q)] if q else [0, 0]
