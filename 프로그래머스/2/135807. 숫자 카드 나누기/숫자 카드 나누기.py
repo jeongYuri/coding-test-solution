@@ -1,25 +1,20 @@
-def gcd(a, b):
-    if b == 0:
-        return a
-    return gcd(b, a % b)
-
-def nodiv(array, gcd_value):
-    for n in array:
-        if n % gcd_value == 0:
+import math
+def gcd(arr):
+    g = arr[0]
+    for x in arr[1:]:
+        g = math.gcd(g,x)
+    return g
+def check(g,arr):
+    for x in arr:
+        if x%g==0:
             return False
     return True
-
 def solution(arrayA, arrayB):
-    answer = 0
-    gcda = arrayA[0]
-    for a in arrayA[1:]:
-        gcda = gcd(a, gcda)
-    gcdb = arrayB[0]
-    for b in arrayB[1:]:
-        gcdb = gcd(b, gcdb)
-    if nodiv(arrayA, gcdb):
-        answer = max(answer, gcdb)
-    if nodiv(arrayB, gcda):
-        answer = max(answer, gcda)
-        
-    return answer
+    ans = 0
+    ga = gcd(arrayA)
+    gb = gcd(arrayB)
+    if check(ga, arrayB):
+        ans = max(ans, ga)
+    if check(gb, arrayA):
+        ans = max(ans,gb)
+    return ans
