@@ -1,12 +1,10 @@
 import heapq
-
 def solution(n, works):
-    works = [-w for w in works]
+    works =[-w for w in works]
     heapq.heapify(works)
     for _ in range(n):
-        if works[0] == 0: 
+        max_heap = heapq.heappop(works)
+        if max_heap==0:
             break
-        max_work = heapq.heappop(works)
-        heapq.heappush(works, max_work + 1)  
-
-    return sum(work ** 2 for work in works)
+        heapq.heappush(works, max_heap+1)
+    return sum(w*w for w in works)
