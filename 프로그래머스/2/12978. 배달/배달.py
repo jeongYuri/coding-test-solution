@@ -1,19 +1,25 @@
-from collections import deque, defaultdict
-def solution(N, road, k):
-    graph = defaultdict(list)
-    for u, v, w in road:
-        graph[u].append((v,w))
-        graph[v].append((u,w))
+import heapq
+def solution(N, road, K):
+    INF = float('inf')
+    answer = 0
+    graph = [[]for _ in range(N+1)]
+    for a,b, cost in road:
+        graph[a].append((b,cost))
+        graph[b].append((a,cost))
+    dist = [INF]*(N+1)
+    dist[1] = 0
+    pq = []
+    heapq.heappush(pq,(0,1))
+    while pq:
+        cost, node = heapq.heappop(pq)
+        if dist[node]<cost:
+            continue
+        for nxt, nxt_c in graph[node]:
+            new_cost = cost+nxt_c
+            if new_cost< dist[nxt]:
+                dist[nxt] = new_cost
+                heapq.heappush(pq,(new_cost, nxt))
+    ans = sum(1 for i in range(1, N+1) if dist[i] <= K)
+    return ans
         
-        min_time =[float('inf')] * (N+1)
-        min_time[1] = 0
-        q = deque([(1,0)])
-        
-        while q:
-            c_node, c_time = q.popleft()
-            for n, t in graph[c_node]:
-                n_time = c_time+t
-                if n_time < min_time[n]:
-                    min_time[n] = n_time
-                    q.append((n,n_time))
-    return sum(1 for time in min_time if time<=k)
+    
