@@ -1,14 +1,13 @@
-from collections import Counter
+from collections import defaultdict
 def solution(weights):
-    answer = 0
-    cnt =Counter(weights)
-    for k, v in cnt.items():
-        if v>1:
-            answer += v *(v-1)//2
+    ans = 0
+    cnt = defaultdict(int)
+    ratios = [1, 2/3, 3/2, 1/2, 2, 3/4, 4/3]
+    for w in weights:
+        for r in ratios:
+            target = w*r
+            if target in cnt:
+                ans+= cnt[target]
+        cnt[w]+=1
         
-    weights = list(set(weights))
-    for item in weights:
-        for check in (3/4, 2/3,2/4):
-            if item * check in weights:
-                answer += cnt[item] *cnt[item*check]
-    return answer
+    return ans
