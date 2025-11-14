@@ -1,11 +1,15 @@
+import heapq
 def solution(players, m, k):
-    server = []
-    
-    for now in players:
-        total = sum((server + [1])[-k:]) * m
-        if total > now:
-            server = server + [0]
-        else:
-            add = (now - total) // m + 1
-            server += [add]
-    return sum(server)
+    answer = 0
+    heap = []
+    for t,player in enumerate(players):
+        n = player//m
+        while heap and heap[0]<=t:
+            heapq.heappop(heap)
+        cur = len(heap)
+        if n>cur:
+            add = n-cur
+            answer+= add
+            for _ in range(add):
+                heapq.heappush(heap,t+k)
+    return answer
